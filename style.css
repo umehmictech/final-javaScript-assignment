@@ -1,0 +1,16 @@
+body {
+    padding: 5rem;
+    font-family: sans-serif;
+    background-color: #f2f3f4;
+
+}
+#movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,  (250px, 1fr));
+}
+.movieDiv {
+background-color: #ffffff;
+padding: .3rem;
+border-radius: .3rem;
+box-shadow: 0 4p4 8px rgba(0, 0, 0, 0.1);
+}

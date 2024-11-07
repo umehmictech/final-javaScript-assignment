@@ -1,47 +1,50 @@
+document.addEventListener("DOMContentLoaded", () => {
+    fetchMovies ();
+   // console.log (ListOfMovies)
+    
+})
+
 const MOVIE_URL = 'https://dummyapi.online/api/movies' ;
+//console.log(MOVIE_URL)
 
 const fetchMovies = async () =>{
     try{
-        const response = await fetch (`${MOVIE_URL}`);
+        const response = await fetch (MOVIE_URL);
+        console.log (response)
         const result = await response.json();
-        return result.movies;
+        console.log (result);
+        renderMovies (result);
+        return result;
     } 
     catch (err){
         console.log (err);
     }
 };
-console.log (fetchMovies())
+//console.log (fetchMovies())
 
-const renderMovies = (movie) => {
-    const movieContainer = document.querySelector('movie-container');
-    movie.forEach( movie => {
+const renderMovies = (movies) => {
 
-        movieDiv = document.createElement('div');
-        movieDiv.classList.add(movie-card);
+    const movieContainer = document.getElementById('movie-container');
+    movies.forEach( movie => {
+
+        const movieDiv = document.createElement('div');
+        movieDiv.classList.add('movie-card');
 
         const moviePoster = document.createElement('img');
-        moviePoster.src = 'https://image.tmdb.org/t/p/w500/' + movie.poster_path;
-        movieCard.appendChild(moviePoster);
-
+        moviePoster.src = "https://via.placeholder.com/150?text=No+Image+Available";
+        movieDiv.appendChild(moviePoster);
 
         const movieTitle = document.createElement('h1');
-        movieTitle.textContent = movie.title;
-        movieCard.appendChild(movieTitle);
+        movieTitle.textContent = movie.movie;
+        movieDiv.appendChild(movieTitle);
 
-        const movieReleaseDate = document.createElement('p');
-        movieReleaseDate.textContent = 'Release Date: ' + movie.release_date;
-        movieCard.appendChild(movieReleaseDate);
+        const movieRating = document.createElement('p');
+        movieRating.textContent = 'rating: ' + movie.rating;
+        movieDiv.appendChild(movieRating);
 
-        const moviePlot = document.createElement('p');
-        moviePlot.textContent = movie.overview;
-        movieCard.appendChild(moviePlot);
-
+        //const moviePlot = document.createElement('p');
+       // moviePlot.textContent = movie.overview;
+        //movieDiv.appendChild(moviePlot);
+        movieContainer.appendChild(movieDiv)
     } );
 };
- 
-document.addEventListener("DOMContentLoaded", async() => {
-    const ListOfProducts = await fetchProduct ();
-    renderProduct (ListofProducts);
-})
-
-
